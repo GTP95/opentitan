@@ -64,6 +64,7 @@ RUN apt-get install -y \
         time \
         software-properties-common \
 	dos2unix \
+	curl \
     && apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
