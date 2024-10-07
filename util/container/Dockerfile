@@ -52,8 +52,8 @@ ENV TZ=UTC
 COPY apt-requirements.txt /tmp/apt-requirements.txt
 RUN sed -i -e '/^$/d' -e '/^#/d' -e 's/#.*//' /tmp/apt-requirements.txt \
     && apt-get update \
-    && xargs apt-get install -y </tmp/apt-requirements.txt \
-    && apt-get install -y \
+    && apt-get install -y </tmp/apt-requirements.txt
+RUN apt-get install -y \
         sudo \
         gosu \
         locales \
@@ -63,8 +63,8 @@ RUN sed -i -e '/^$/d' -e '/^#/d' -e 's/#.*//' /tmp/apt-requirements.txt \
         dc \
         time \
         software-properties-common \
-    && apt-get clean; \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+    && apt-get clean
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
 # Install the CI version of gcc and g++
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test \
