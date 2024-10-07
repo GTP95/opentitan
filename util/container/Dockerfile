@@ -63,6 +63,7 @@ RUN apt-get install -y \
         dc \
         time \
         software-properties-common \
+	dos2unix \
     && apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
@@ -75,6 +76,7 @@ RUN add-apt-repository ppa:ubuntu-toolchain-r/test \
 
 # RISC-V device toolchain
 COPY util/get-toolchain.py /tmp/get-toolchain.py
+RUN dos2unix /tmp/get-toolchain.py
 RUN /tmp/get-toolchain.py -r ${RISCV_TOOLCHAIN_TAR_VERSION} \
     && rm -f /tmp/get-toolchain.py
 
